@@ -103,20 +103,6 @@ start.addEventListener('click', function(){
 } );
 
 
-// function answerChecker(){
-//     debugger;
-//    if (choice_A == allQuestions[questionIndex].correct){
-//        console.log('correct');
-//        //result.innerHTML = 'Correct!';
-//        correct++;
-//    }else{
-//        result.innerHTML = 'Incorrect!'
-//        incorrect++;
-//    }
-//    questionIndex++;
-//    produceQuestion();
-// }
-
 choice_A.addEventListener('click', function(){
    if (choice_A.innerHTML === allQuestions[questionIndex].Correct){
        console.log('correct');
