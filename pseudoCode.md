@@ -3,6 +3,8 @@
 creating a reactive start button using an eventListener
 
     when the button is pressed a timer begins a countdown
+        *** when button is pressed, pass a function into the even listener to start the quiz
+
 
     multiple choice a question is presented
             *possibly* - place questions into an array with objects
@@ -34,7 +36,7 @@ Questions:
 2. How do you add a comment in JavaScript?
     * < !-- comment -->
     * // comment
-    * " comment "
+    * ^ comment 
     * /* coment */
 
 3. Is JavaScript case sensitive?
