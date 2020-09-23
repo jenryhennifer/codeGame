@@ -10,7 +10,7 @@ var score = document.getElementById('score');
 var inputName = document.getElementById('inputName');
 var submit = document.getElementById('submit');
 var scoreBoard = document.getElementById('scoreBoard');
-
+var timer = document.getElementById('timer');
 
 
 var correct = 0;
@@ -60,11 +60,12 @@ var allQuestions = [
     },      
  ]
 
-
- var questionIndex = 0;
+var interval;
+var questionIndex = 0;
 
  //renders the question to the screen with buttons
- function produceQuestion(){
+function produceQuestion(){
+    result.innerHTML = '';
     const currentQuestion = allQuestions[questionIndex]; 
     //when allQuestions[questionIndex] returns as undefined it will go to the else statement :)
     if(currentQuestion){
@@ -73,15 +74,20 @@ var allQuestions = [
         choice_B.innerHTML = currentQuestion.choiceB;
         choice_C.innerHTML = currentQuestion.choiceC;
         choice_D.innerHTML = currentQuestion.choiceD;
-    }else{
+    }
+    else{
         quiz.style.display = 'none';
         score.style.display = 'block';
+        timer.style.display = 'none';
+        clearInterval(interval); //stops timer
         
         submit.addEventListener('click', function(){
             localStorage.setItem(inputName.value, correct);
             inputName.style.display = 'none';
             submit.style.display = 'none';
 
+
+            //adding local scores to scoreboard
             var keyArray = Object.keys(localStorage);
             for(var i = 0; i < keyArray.length; i++){
                 var key = keyArray[i];
@@ -90,30 +96,42 @@ var allQuestions = [
                 child.innerHTML = key + ": " +keyValue;
                 scoreBoard.appendChild(child);
             }
-
         });
     }
  } 
+
+
+var timeLeft = 30;
+function checkTime(n = 1){
+    timeLeft -= n;
+    timer.innerHTML = timeLeft;
+    if(timeLeft <= 0){
+        questionIndex = Infinity; //this allows me to add as many questions as i want
+        produceQuestion(); //takes it to the else statement in produceQuestion
+    }
+}
 
 //starts the quiz
 start.addEventListener('click', function(){
     start.style.display = 'none'; 
     produceQuestion();
     quiz.style.display = 'block';
+    interval = setInterval(checkTime, 1000);
+    timer.innerHTML = timeLeft;
 } );
 
-
+//score checkers
 choice_A.addEventListener('click', function(){
-   if (choice_A.innerHTML === allQuestions[questionIndex].Correct){
+    if (choice_A.innerHTML === allQuestions[questionIndex].Correct){
        console.log('correct');
        result.innerHTML = 'Correct!';
        correct++;
    }else{
-       result.innerHTML = 'Incorrect!';
-       incorrect++;
-   }
+        result.innerHTML = 'Incorrect!';
+        checkTime(5);
+    }
    questionIndex++;
-   produceQuestion();
+   setTimeout(produceQuestion, 1000); //gives delay before producing the next question
 });
 
 choice_B.addEventListener('click', function(){
@@ -123,10 +141,10 @@ choice_B.addEventListener('click', function(){
        correct++;
    }else{
        result.innerHTML = 'Incorrect!'
-       incorrect++;
-   }
+       checkTime(5);
+       }
    questionIndex++;
-   produceQuestion();
+   setTimeout(produceQuestion, 1000);
 });
 
 choice_C.addEventListener('click', function(){
@@ -137,10 +155,10 @@ choice_C.addEventListener('click', function(){
    }else{
        console.log('incorrect')
        result.innerHTML = 'Incorrect!'
-       incorrect++;
+       checkTime(5);
    }
    questionIndex++;
-   produceQuestion();
+   setTimeout(produceQuestion, 1000);
 });
 
 choice_D.addEventListener('click', function(){
@@ -150,26 +168,24 @@ choice_D.addEventListener('click', function(){
        correct++;
    }else{
        result.innerHTML = 'Incorrect!'
-       incorrect++;
+       checkTime(5);
    }
    questionIndex++;
-   produceQuestion();
+   setTimeout(produceQuestion, 1000);
 });
 
 
 
 
+/*
 
-//  function quiz(){
-//     for(var i=0; i<allQestions.length; i++){
-//         var questionPrint = document.getElementById('question');
-//          questionPrint.textContent((allQuestions[i])[0].question);
-         
+timer for 30 seconds
 
-//         if(response === allQuestions[i].answer){
-//             correct++;
-//         }
-//         else{incorrect++;}
-//      }
-//  }
+setInterval() -- will continue until you stop it (clear interval)
 
+decrement the timer --
+set div to timer
+
+
+
+*/

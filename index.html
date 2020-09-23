@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
 <body>
-    <button type = 'button' id = 'startButton'> Start! </button>
+    <button type = 'button' id = 'startButton' class = 'btn-primary'> Start! </button>
 
     <div id ='timer'>
 
     </div>
     <div id = "quiz" style = "display: none"> 
+        <div id = 'timer'></div>
         <div id = 'question'></div>
         <div id = 'choices'>
             <button class = 'choice' id = 'A' type = 'button'></button>
@@ -26,7 +29,7 @@
         <input type = 'text' id = 'inputName' placeholder="your name">
         <button id = 'submit' type = 'button'>Submit</button>
         <container id = 'scoreBoard'>Scores!
-            <div></div>
+            
         </container>
     </div>
     <script type = 'text/javascript' src='script.js'></script>
