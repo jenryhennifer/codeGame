@@ -9,8 +9,9 @@ var result = document.getElementById('result');
 var score = document.getElementById('score');
 var inputName = document.getElementById('inputName');
 var submit = document.getElementById('submit');
-var scoreBoard = document.getElementById('scoreBoard');
+var scoreBoard = document.querySelector('.card-body');
 var timer = document.getElementById('timer');
+var toggleBoard = document.getElementById('toggle-board');
 
 
 var correct = 0;
@@ -57,7 +58,16 @@ var allQuestions = [
         choiceD: "Aerosmith",
 
         Correct: "AC/DC",
-    },      
+    },
+    {   //question 5
+        question: "5. What song is NOT written by the Queen?",  
+        choiceA: "Bohemian Rhapsody",
+        choiceB: "Cat Scratch Fever",
+        choiceC: "Under Pressure",
+        choiceD: "We Will Rock You",
+
+        Correct: "Cat Scratch Fever",
+    },       
  ]
 
 var interval;
@@ -79,12 +89,15 @@ function produceQuestion(){
         quiz.style.display = 'none';
         score.style.display = 'block';
         timer.style.display = 'none';
+
         clearInterval(interval); //stops timer
         
         submit.addEventListener('click', function(){
             localStorage.setItem(inputName.value, correct);
             inputName.style.display = 'none';
             submit.style.display = 'none';
+            toggleBoard.style.display = 'block';
+            
 
 
             //adding local scores to scoreboard
@@ -94,7 +107,9 @@ function produceQuestion(){
                 var keyValue = localStorage.getItem(key);
                 var child = document.createElement('div');
                 child.innerHTML = key + ": " +keyValue;
+                var line = document.createElement('hr')
                 scoreBoard.appendChild(child);
+                scoreBoard.appendChild(line);
             }
         });
     }
@@ -123,7 +138,6 @@ start.addEventListener('click', function(){
 //score checkers
 choice_A.addEventListener('click', function(){
     if (choice_A.innerHTML === allQuestions[questionIndex].Correct){
-       console.log('correct');
        result.innerHTML = 'Correct!';
        correct++;
    }else{
@@ -136,7 +150,6 @@ choice_A.addEventListener('click', function(){
 
 choice_B.addEventListener('click', function(){
    if (choice_B.innerHTML === allQuestions[questionIndex].Correct){
-       console.log('correct');
        result.innerHTML = 'Correct!';
        correct++;
    }else{
@@ -149,7 +162,6 @@ choice_B.addEventListener('click', function(){
 
 choice_C.addEventListener('click', function(){
    if (choice_C.innerHTML === allQuestions[questionIndex].Correct){
-       console.log('correct');
        result.innerHTML = 'Correct!';
        correct++;
    }else{
