@@ -68,7 +68,16 @@ var allQuestions = [
         choiceD: "We Will Rock You",
 
         Correct: "Cat Scratch Fever",
-    },       
+    },
+    {   //question 6
+        question: "6. Which of the following is NOT an example of a metamorphic rock?",  
+        choiceA: "Gneiss",
+        choiceB: "Schist",
+        choiceC: "Marble",
+        choiceD: "Basalt",
+
+        Correct: "Basalt",
+    },        
  ]
 
 var interval;
@@ -117,7 +126,7 @@ function produceQuestion(){
  } 
 
 
-var timeLeft = 30;
+var timeLeft = 45;
 function checkTime(n = 1){
     timeLeft -= n;
     timer.innerHTML = timeLeft;
