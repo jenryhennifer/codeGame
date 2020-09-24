@@ -12,6 +12,7 @@ var submit = document.getElementById('submit');
 var scoreBoard = document.querySelector('.card-body');
 var timer = document.getElementById('timer');
 var toggleBoard = document.getElementById('toggle-board');
+var toggleTimer = document.getElementById('toggleTimer');
 
 
 var correct = 0;
@@ -19,7 +20,7 @@ var correctResponse = "correct!";
 var incorrect = 0;
 var incorrectResponse = 'incorrect!';
 
-
+toggleTimer.style.display = 'none'
 
 //questions are placed into an array wiht objects
 var allQuestions = [ 
@@ -88,7 +89,7 @@ function produceQuestion(){
     else{
         quiz.style.display = 'none';
         score.style.display = 'block';
-        timer.style.display = 'none';
+        toggleTimer.style.display = 'none';
 
         clearInterval(interval); //stops timer
         
@@ -131,6 +132,7 @@ start.addEventListener('click', function(){
     start.style.display = 'none'; 
     produceQuestion();
     quiz.style.display = 'block';
+    toggleTimer.style.display = 'block';
     interval = setInterval(checkTime, 1000);
     timer.innerHTML = timeLeft;
 } );
